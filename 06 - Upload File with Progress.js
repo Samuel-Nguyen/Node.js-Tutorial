@@ -2,24 +2,24 @@
  Upload a File with Progress (using streams)
  */
 
-var fs = require('fs');
-var http = require('http');
+const fs = require('fs');
+const http = require('http');
 
 http.createServer(function (request, response) {
-    var writeFile = fs.createWriteStream("largeFile_copy");
+    const writeFile = fs.createWriteStream("largeFile_copy");
     // Get the size of the file from the request
-    var fileBytes = request.headers['content-length'];
+    const fileBytes = request.headers['content-length'];
 
     // This variable is used to keep track of how many bytes were uploaded
-    var uploadedBytes = 0;
+    let uploadedBytes = 0;
 
     request.on('readable', function () {
-        var chunk = null;
+        let chunk = null;
         while (null !== (chunk = request.read())) {
             // The following code calculates the file upload progress and writes it to the response
             uploadedBytes += chunk.length;
-            var progress = (uploadedBytes / fileBytes) * 100;
-            response.write("progress: " + parseInt(progress, 10) + "%\n");
+            const progress = (uploadedBytes / fileBytes) * 100;
+            response.write("progress: ", parseInt(progress, 10), "%\n");
         }
     });
 

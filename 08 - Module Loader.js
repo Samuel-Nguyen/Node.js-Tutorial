@@ -1,11 +1,12 @@
 // Load the custom module using 'require'
-var moduleFunction = require('./7 - modules');
+const moduleFunction = require('./07 - Modules');
 // It is possible to use all of the export methods from the custom Module
 moduleFunction();
 
 // When you require a module using './', it is going to look in the same directory
 // as the application, for a file with that name
-var makeRequest = require('./9 - http module');
+const makeRequest = require('./09 - Http Module');
+
 makeRequest('http req 1');
 makeRequest('http req 2');
 

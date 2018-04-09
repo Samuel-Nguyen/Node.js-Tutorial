@@ -4,15 +4,15 @@
  - Many objects in Node emit events, in general, these are inherited from the EventEmitter constructor
  */
 // Loading the EventEmitter constructor
-var EventEmitter = require('events').EventEmitter;
+const EventEmitter = require('events');
 
-//In this case, we want the logger to emit Events by adding a listener
-var logger = new EventEmitter();
+// In this case, we want the logger to emit Events by adding a listener
+const logger = new EventEmitter();
 
 // The following code demonstrates the syntax for listening to the error event,
 // and executing the callback function
-logger.on('error', function(message) {
-    console.log('ERR: ' + message);
+logger.on('error', function (message) {
+    console.log('ERR: ', message, '!!!');
 });
 
 // The following code triggers the 'error' event

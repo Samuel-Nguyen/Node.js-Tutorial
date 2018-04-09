@@ -14,16 +14,16 @@
  */
 
 // In order to start the web application, we need to load the library
-var express = require('express');
+const express = require('express');
 
 // Create an instance of express
-var app = express();
+const app = express();
 
 // Define end-points in the following way
 // '/' is the root route
 app.get('/', function (request, response) {
-    //Read a file from the file system and send it back to the response
-    response.sendFile(__dirname + "/README.md");
+    // Read a file from the file system and send it back to the response
+    response.sendFile(__dirname, "/README.md");
 });
 // Receive requests at port 8080
 app.listen(8080);

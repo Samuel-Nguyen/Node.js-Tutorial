@@ -10,8 +10,9 @@
  "npm install redis --save"
  */
 
-var redis = require('redis');
-var client = redis.createClient();
+const redis = require('redis');
+
+const client = redis.createClient();
 
 // Set commands in the database by setting key-value entries
 client.set("1", "one");

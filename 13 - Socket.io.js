@@ -12,29 +12,29 @@
  Install by running:
  npm install --save socket.io
  */
-var express = require('express');
-var app = express();
+const express = require('express');
+
+const app = express();
 // Create an http server and dispatch the requests to express
-var server = require('http').createServer(app);
+const server = require('http').createServer(app);
 // Load the socket.io module and allow it to use the http server to listen for requests
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
 
 // Listen for connection events (on socket.io) and define the callback function
 io.on('connection', function (client) {
     console.log('Client connected...');
     // Emits the 'messages' event on the clients and sends the object {socket:io}
-    client.emit('messages', {socket: 'i.o'})
+    client.emit('messages', { socket: 'i.o' });
 
     client.on('fromClient', function (data) {
         console.log(data);
         // Use broadcast to send a message to all the clients that are connected
-        client.broadcast.emit("fromServer", {fromServer: 'fromServer'});
+        client.broadcast.emit("fromServer", { fromServer: 'fromServer' });
     });
-
-})
+});
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/socket.html');
+    res.sendFile(`${__dirname}/socket.html`);
 });
 
 server.listen(8080);

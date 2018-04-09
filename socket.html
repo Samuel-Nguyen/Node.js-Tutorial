@@ -12,7 +12,7 @@
     // Connect to the server
     var socket = io.connect('http://localhost:8080');
 
-    <!-- Listens to the 'messages' event -->
+    // <!-- Listens to the 'messages' event -->
     socket.on('messages', function (data) {
         console.log(data.socket);
     });
@@ -20,7 +20,7 @@
         console.log(data.fromServer);
     });
 
-    <!-- Creates a new message and sends it to the server -->
+    // <!-- Creates a new message and sends it to the server -->
     socket.emit('fromClient', "fromClient");
 
 </script>

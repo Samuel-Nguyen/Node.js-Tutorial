@@ -1,5 +1,7 @@
 # use npm install
 node_modules
+# lock file from package
+package-lock.json
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 

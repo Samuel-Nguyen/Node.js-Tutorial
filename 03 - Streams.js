@@ -11,28 +11,27 @@
  - Readable stream: Inherits from EventEmitter
 
  */
-var http = require('http');
+const http = require('http');
 
 // 'request' is a readable stream
 // 'response' is a writeable stream
-http.createServer(function(request, response) {
+http.createServer(function (request, response) {
     // With the following example, we print to the console the data that we get from the client
     response.writeHead(200);
 
-    request.on('readable', function(){
-        var chunk = null;
+    request.on('readable', function () {
+        let chunk = null;
         while (null !== (chunk = request.read())) {
             response.write(chunk);
             console.log(chunk);
         }
     });
-    request.on('end', function(){
+    request.on('end', function () {
         response.end('- end of request');
     });
-
 }).listen(8080);
 
-//Note: This example could be simplified by using:
+// Note: This example could be simplified by using:
 /*
  http.createServer(function (request, response) {
  response.writeHead(200);

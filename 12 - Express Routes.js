@@ -1,34 +1,33 @@
 /* Express Routes */
 
-var express = require('express');
-var request = require('request');
-var url = require('url');
-var crypto = require('crypto');
-var app = express();
+const express = require('express');
+const request = require('request');
+const url = require('url');
+const crypto = require('crypto');
+
+const app = express();
 
 // Create an end-point with the following syntax
 // By using ':', we specify that we will use a dynamic parameter
 app.get('/images/:email', function (req, response) {
-
     // Use the information from the request parameters
-    var email = req.params.email;
+    const { email } = req.params;
     // The gravatar API requires a Hash of the 'email' parameter
-    var hash = crypto.createHash('md5').update(email).digest('hex');
+    const hash = crypto.createHash('md5').update(email).digest('hex');
 
     // As usual, it is possible to specify the set of options in an object
-    var options = {
+    const options = {
         protocol: "http",
         host: 'gravatar.com',
-        pathname: '/avatar/' + hash,
-        query: {size: 80}
-    }
+        pathname: `/avatar/${hash}`,
+        query: { size: 80 },
+    };
 
     // Make a request with the URL
-    var gravatarUrl = url.format(options);
+    const gravatarUrl = url.format(options);
 
     // Pipe the request to the response
     request(gravatarUrl).pipe(response);
-
 });
 
 app.listen(8080);
